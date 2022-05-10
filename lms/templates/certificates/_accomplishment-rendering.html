@@ -1,0 +1,137 @@
+<%page expression_filter="h"/>
+<%! from django.utils.translation import ugettext as _ %>
+<%namespace name='static' file='../static_content.html'/>
+<%
+course_mode_class = course_mode if course_mode else ''
+%>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@500&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+        color: rgb(56, 56, 56);
+    }
+
+    @media print {
+        * {
+            -webkit-print-color-adjust: exact;
+        }
+    }
+
+    body{
+        height: 100%;
+        width: 100%;
+    }
+
+
+    .wrapper{
+        width: 1250px;
+        height: 700px;
+        margin: 0 auto;
+        background: url('https://raw.githubusercontent.com/SRDeveloperVishal/images-videos/main/background.jpg') no-repeat center center / cover;
+    }
+
+    .inner_wrapper{
+        width: 850px;
+        height: 470px;
+        position: relative;
+        top: 200px;
+        margin: 0 auto;
+    }
+
+    .issue_date{
+        height: 140px;
+    }
+
+    .issue_date h1{
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        color: #a0a0a0;
+    }
+
+
+    .issue_date p{
+        font-size: 0.7rem;
+        font-weight: bold;
+        margin-top: 5px;
+    }
+
+    .holder{
+        height: 230px;
+        text-align: center;
+    }
+
+    .holder h1{
+        font-family: 'Fira Mono', monospace;
+        font-style: italic;
+        color: #5e00ac;
+        font-size: 2.4rem;
+        word-spacing: -10px;
+        margin-bottom: 10px;
+    }
+
+    .qr_verify{
+        height: 100px;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .qr_verify h1{
+        font-size: 0.8rem;
+        color: #a0a0a0;
+    }
+
+    .qr_verify p{
+        font-size: 0.7rem;
+    }
+
+    .qr_verify a{
+        text-decoration: none;
+        color: rgb(111, 95, 250);
+    }
+
+    .qr_image{
+        width: 100px;
+        height: 100px;
+    }
+
+    .qr_content p{
+      margin-bottom: 0.5rem;
+    }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="inner_wrapper">
+        <div class="issue_date">
+            <h1>ISSUED ON:</h1>
+            <p>${certificate_date_issued}</p>
+        </div>
+
+        <div class="holder">
+            <h1>${accomplishment_copy_name}</h1>
+            <p>successfully completed, received a passing grade ${grade_final}, and was awarded this Magma Training and Certification None Certificate of Completion in.</p>
+            <p style="margin: 15px 0; color: #5e00ac;">${accomplishment_copy_course_name}</p>
+            <p>a course of study offered by magma, an online learning initiative of magma.</p>
+        </div>
+
+        <div class="qr_verify">
+            <img src="${qr_image_url}" class="qr_image" alt="">
+            <div class="qr_content">
+                <h1>CERTIFICATE ID NUMBER :</h1>
+                <p>${certificate_number}</p>
+                <h1>VERIFY LINK :</h1>
+                <p><a href="http://besu.certificatex.io/verify/${transaction_hash}">http://besu.certificatex.io/verify</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
